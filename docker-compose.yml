@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: template
+      MYSQL_USER: root
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+    networks:
+      - app-network
+# Retirez les commentaires pour utiliser Mailhog (serveur de test de mail)
+#  mailhog:
+#    image: mailhog/mailhog
+#    ports:
+#      - "1025:1025" #Port SMTP
+#      - "8025:8025" # Interface Web
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
