@@ -67,7 +67,7 @@ abstract class BaseController extends Controller
      *
      * @var string
      */
-    protected $title_prefix = 'Hero-fight';
+    protected $title_prefix = 'Template';
 
     /**
      * Chemin de navigation pour la gestion des breadcrumbs.
@@ -102,7 +102,7 @@ abstract class BaseController extends Controller
             $datas = array_merge($datas, $flashData);
         }
         $headData = [
-            'title' => $datas['title'] ?? sprintf('%s : %s', $this->title_prefix, $this->title),
+            'title' => sprintf('%s : %s', $this->title, $this->title_prefix),
             'menus' => $this->loadMenu($admin),
             'template_path' => $template_path,
             'breadcrumb' => $this->breadcrumb,
@@ -118,8 +118,8 @@ abstract class BaseController extends Controller
     protected function loadMenu($admin): array
     {
 
-        $filename = APPPATH . "Config/Menu/";
-        $filename .= $admin ? "menu_admin.json" : "menu_front.json";
+        $filename = APPPATH . "Config/Menus/";
+        $filename .= $admin ? "admin.json" : "site.json";
 
         if (!file_exists($filename)) {
             log_message('error', "Menu JSON file not found: $filename");

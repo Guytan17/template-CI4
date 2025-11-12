@@ -6,6 +6,6 @@ class Home extends SiteController
 {
     public function index(): string
     {
-        return view('welcome_message');
+        return $this->render('welcome_message');
     }
 }

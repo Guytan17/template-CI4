@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 abstract class AdminController extends BaseController
 {
-    public function render($view, $data = [])
+    public function render($view = null, $data = [], $is_admin = true)
     {
         return parent::render($view, $data, true);
     }

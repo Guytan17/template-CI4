@@ -1,0 +1,25 @@
+{
+  "dashboard" : {
+    "title" : "Tableau de bord",
+    "url" : "/admin/dashboard",
+    "icon" : "fas fa-home"
+  },
+  "administration" : {
+    "title" : "Administration",
+    "url" : "/",
+    "icon" : "fas fa-gear",
+    "class" : "",
+    "subs" : {
+      "users" : {
+        "title" : "Utilisateurs",
+        "url" : "/admin/users",
+        "icon" : "fas fa-users"
+      },
+      "options" : {
+        "title" : "Options",
+        "url" : "/admin/options",
+        "icon" : "fas fa-cog"
+      }
+    }
+  }
+}
