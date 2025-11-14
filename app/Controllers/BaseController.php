@@ -77,6 +77,7 @@ abstract class BaseController extends Controller
     protected $breadcrumb = [];
 
     protected $menu = 'accueil';
+    protected $isAdmin = false;
 
     /**
      * @return void
@@ -96,11 +97,12 @@ abstract class BaseController extends Controller
 
     public function render($vue = null, $datas = [], $admin = true)
     {
-        // Récupérer les données globales
+        // Récupérer les données flashdata
         $flashData = session()->getFlashdata('data');
         if ($flashData) {
             $datas = array_merge($datas, $flashData);
         }
+
         // Préparer les données globales
         $datas['title'] = sprintf('%s : %s', $this->title, $this->title_prefix);
         $datas['menus'] = $this->loadMenu($this->isAdmin);
