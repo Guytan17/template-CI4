@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <title><?= $title ?></title>
+    <title><?= $title ?? "" ?></title>
     <!-- Favicons-->
     <link rel="icon" type="image/png" href="<?= base_url('/assets/favicon/favicon-96x96.png') ?>" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="<?= base_url('/assets/favicon/favicon.svg') ?>" />
@@ -66,12 +66,3 @@
     <link href="<?=base_url('/assets/css/select2-bootstrap-5-theme.min.css'); ?>" rel="stylesheet"></link>
     <script src="<?= base_url('/assets/js/select2.min.js') ?>"></script>
 </head>
-
-<body>
-<div class="container-fluid p-0">
-    <?php if (isset($menus) && !empty($menus)) {
-        echo view('templates/front/navbar',['menus' => $menus]);
-    }  ?>
-</div>
-<div class="body flex-grow-1">
-    <div class="container">

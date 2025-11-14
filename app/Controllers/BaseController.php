@@ -96,23 +96,24 @@ abstract class BaseController extends Controller
 
     public function render($vue = null, $datas = [], $admin = true)
     {
-        $template_path = $admin ? "templates/admin/" : "templates/front/";
+        // Récupérer les données globales
         $flashData = session()->getFlashdata('data');
         if ($flashData) {
             $datas = array_merge($datas, $flashData);
         }
-        $headData = [
-            'title' => sprintf('%s : %s', $this->title, $this->title_prefix),
-            'menus' => $this->loadMenu($admin),
-            'template_path' => $template_path,
-            'breadcrumb' => $this->breadcrumb,
-            'localmenu' => $this->menu,
-            'session_user' => $this->session->get('user'),
-        ];
-        return
-            view($template_path . 'head', $headData)
-            . (($vue !== null) ? view($vue, $datas) : '')
-            . view($template_path . 'footer', ['messages' => $this->messages]);
+        // Préparer les données globales
+        $datas['title'] = sprintf('%s : %s', $this->title, $this->title_prefix);
+        $datas['menus'] = $this->loadMenu($this->isAdmin);
+        $datas['breadcrumb'] = $this->breadcrumb;
+        $datas['menu'] = $this->menu;
+        $datas['messages'] = $this->messages;
+        $datas['session_user'] = $this->session->get('user') ?? null;
+
+        if ($vue === null) {
+            return '';
+        }
+
+        return view($vue, $datas);
     }
 
     protected function loadMenu($admin): array

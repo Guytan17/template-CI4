@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr-FR" data-bs-theme="light">
 <head>
     <base href="<?= base_url('./') ?>">
     <meta charset="utf-8">
@@ -66,17 +64,3 @@
     <link href="<?=base_url('/assets/css/select2-bootstrap-5-theme.min.css'); ?>" rel="stylesheet"></link>
     <script src="<?= base_url('/assets/js/select2.min.js') ?>"></script>
 </head>
-
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-lg-2 p-0">
-            <?php if (isset($menus) && !empty($menus)) {
-                echo view('templates/admin/sidebar',['menus' => $menus]);  }  ?>
-        </div>
-        <div class="col p-0">
-            <div class="d-flex flex-column min-vh-100">
-                <?= view('templates/admin/header'); ?>
-                <?php if (isset($breadcrumb)) { echo view('templates/admin/breadcrumb');  } ?>
-                <div class="body flex-grow-1">
-                    <div class="container-fluid px-4">

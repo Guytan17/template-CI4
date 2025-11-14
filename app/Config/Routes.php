@@ -6,8 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-//TODO : à retirer plus tard //
-$routes->get('/admin/dashboard', 'Admin\Dashboard::index');
 
 service('auth')->routes($routes);
 
