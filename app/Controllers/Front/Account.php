@@ -45,50 +45,32 @@ class Account extends SiteController
      */
     public function doRegister()
     {
-        $users = auth()->getProvider();
-
         try {
-            // Créer une nouvelle entité User
-            $user = new \App\Entities\User([
-                'email'    => $this->request->getPost('email'),
-                'username' => $this->request->getPost('username') ?: null,
-                'active'   => 1,
-            ]);
-
-            // Définir le password - Shield créera automatiquement l'identité email_password
-            $user->password = $this->request->getPost('password');
-
-            // Sauvegarder l'utilisateur - Shield valide et crée l'identité automatiquement
-            if (!$users->save($user)) {
-                throw new \Exception('Erreur lors de la création de votre compte');
+            $data = [
+                'password' => $this->request->getPost('password'),
+                'email' => $this->request->getPost('email'),
+                'first_name' => $this->request->getPost('first_name'),
+                'last_name' => $this->request->getPost('last_name'),
+                'birthdate' => $this->request->getPost('birthdate'),
+            ];
+            // Appel service
+            $result = $this->userService->saveUser($data);
+            if(!empty($result['user_id'])) {
+                $users = auth()->getProvider();
+                // Récupérer l'utilisateur complet avec son ID
+                $user = $users->findById($result['user_id']);
+                // Connexion automatique
+                auth()->login($user);
             }
 
-            // Récupérer l'ID du dernier insert
-            $userId = $users->getInsertID();
-
-            // Récupérer l'utilisateur complet avec son ID
-            $user = $users->findById($userId);
-
-            // Ajouter au groupe 'user' par défaut (l'utilisateur ne choisit pas son groupe)
-            $user->addGroup('user');
-
-            // Créer le profil custom
-            model('UserProfileModel')->saveProfile($userId, [
-                'first_name' => $this->request->getPost('first_name'),
-                'last_name'  => $this->request->getPost('last_name'),
-                'birthdate'  => $this->request->getPost('birthdate') ?: null,
-            ]);
-
-            // Connexion automatique
-            auth()->login($user);
-
-            $this->success('Votre compte a été créé avec succès.');
-            return $this->redirect('/');
+            // Redirection simple (pas d'exit)
+            return redirect()->to('account/profile')
+                ->with('success', 'Votre compte est bien créé.');
 
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
-            session()->setFlashdata('messages', $this->messages);
-            return redirect()->back()->withInput();
+            return redirect()->back()
+                ->withInput()
+                ->with('error', $e->getMessage());
         }
     }
 
