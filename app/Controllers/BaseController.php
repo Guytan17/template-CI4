@@ -212,7 +212,7 @@ abstract class BaseController extends Controller
      * @param string $info Informations supplémentaires.
      * @return void
      */
-    protected function addBreadcrumb($text, $url, $info = '')
+    protected function addBreadcrumb($text, $url = null, $info = '')
     {
         if ($this->breadcrumb === null) {
             $this->breadcrumb = [];

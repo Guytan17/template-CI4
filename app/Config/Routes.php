@@ -7,7 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-service('auth')->routes($routes);
+//Route Shield
+require APPPATH . 'Config/Routes/Shield.php';
 
 //Route de l'administration
 require APPPATH . 'Config/Routes/Admin.php';

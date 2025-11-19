@@ -1,0 +1,62 @@
+/* --- SIDEBAR --- */
+#toggle-sidebar {
+    cursor: pointer;
+    display: none;
+}
+#sidebar .navbar-collapse {
+    align-self: center;
+}
+
+#sidebar .navbar-brand {
+    margin-left : 1rem;
+}
+@media (min-width: 992px) {
+    #sidebar {
+        height: 100%;
+        min-height: 100vh !important;
+        flex-direction: column !important;
+        align-items: center;
+    }
+    #sidebar #top-sidebar {
+        width: 100%;
+        margin-bottom : 1rem;
+    }
+    #sidebar .navbar-brand {
+        margin-left : initial;
+    }
+    #sidebar .nav-link {
+        padding: 0.3rem 0rem;
+    }
+    #sidebar .dropdown-menu {
+        border : 0px;
+    }
+    #sidebar .dropdown-menu {
+        min-width: initial;
+        background : none;
+        position: initial;
+    }
+
+    #toggle-sidebar {
+        cursor: pointer;
+        display: block;
+    }
+
+    #sidebar {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar-container {
+        transition: flex 0.6s ease-in-out;
+    }
+
+    #sidebar .navbar-brand,
+    #sidebar .link-text {
+        transition: opacity 0.3s ease-in-out;
+    }
+
+}
+
+/*--- TOP NAVBAR ( Header ) --- */
+#top-navbar .dropstart .dropdown-toggle::before{
+    display: none;
+}

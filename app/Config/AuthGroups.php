@@ -41,26 +41,27 @@ class AuthGroups extends ShieldAuthGroups
      * @see https://codeigniter4.github.io/shield/quick_start_guide/using_authorization/#change-available-groups for more info
      */
     public array $groups = [
-        'superadmin' => [
+        /*'superadmin' => [
             'title'       => 'Super Admin',
-            'description' => 'Complete control of the site.',
-        ],
+            'description' => 'Controle complet du site.',
+        ],*/
         'admin' => [
             'title'       => 'Admin',
-            'description' => 'Day to day administrators of the site.',
+            'description' => 'Administrateur du site.',
         ],
-        'developer' => [
+        /*'developer' => [
             'title'       => 'Developer',
             'description' => 'Site programmers.',
         ],
+        */
         'user' => [
             'title'       => 'User',
-            'description' => 'General users of the site. Often customers.',
+            'description' => 'Utilisateur classique du site.',
         ],
-        'beta' => [
+        /*'beta' => [
             'title'       => 'Beta User',
             'description' => 'Has access to beta-level features.',
-        ],
+        ],*/
     ];
 
     /**

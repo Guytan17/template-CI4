@@ -7,5 +7,5 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 abstract class SiteController extends BaseController
 {
-   protected $isAdmin = false;
+    protected $isAdmin = false;
 }

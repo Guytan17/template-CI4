@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr-FR" data-bs-theme="light">
 <?= $this->include('templates/front/head') ?>
@@ -9,12 +8,12 @@
 
 </div>
 <div class="body flex-grow-1">
-    <main class="front-main">
-        <div class="container">
-            <?= $this->renderSection('content') ?>
-        </div>
-    </main>
+<main class="front-main">
+    <div class="container">
+        <?= $this->renderSection('content') ?>
+    </div>
+</main>
 
-    <?= $this->include('templates/front/footer') ?>
+<?= $this->include('templates/front/footer') ?>
 </body>
 </html>
